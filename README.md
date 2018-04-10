@@ -8,5 +8,6 @@
     抓包取得每页股票信息列表的json数据,根据请求头的url分析其所有页面json对应url 
     的规律,使用scrapy进行爬取
 ## 运行说明： 
-    1.run.py文件里启动程序，去掉While True 循环直接运行可以实时运行
+    1.run.py文件里启动程序，去掉While True 循环直接运行可以实时运行 
+    
     2.在run.py文件While True循环里设置target_time，可实现程序在该指定时间点爬取信息
