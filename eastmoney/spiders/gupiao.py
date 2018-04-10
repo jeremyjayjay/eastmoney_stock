@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy import Request
+import re
+import requests
 
 
 class GupiaoSpider(scrapy.Spider):
@@ -10,9 +12,15 @@ class GupiaoSpider(scrapy.Spider):
     start_urls = ['http://quote.eastmoney.com/centerv2/hsgg/xg']
 
     def parse(self, response):
-        for i in range(1,18):
+        # 获取第一页response
+        response = requests.get('http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C.BK05011&sty=FCOIATA&sortType=(ChangePercent)&sortRule=1&page=1&pageSize=20&js=var%20dfFHBxOP={rank:[(x)],pages:(pc),total:(tot)}&token=7bc05d0d4c3c22ef9fca8c2a912d779c&jsName=quote_123&_g=0.628606915911589&_=1523274953883')
+        # 正则匹配得到所有页数
+        total = re.findall('total:(.*?)}',response.text)[0]
+        page = int(total)//20 + 1
+        # 循环遍历各页
+        for i in range(1,page+1):
             # 拼接所有页的url,总计新股17页
-            url = 'http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C.BK05011&sty=FCOIATA&sortType=(ChangePercent)&sortRule=1&page='+str(i)+'&pageSize=20&js=var%20dfFHBxOP={rank:[(x)],pages:(pc),total:(tot)}&token=7bc05d0d4c3c22ef9fca8c2a912d779c&jsName=quote_123&_g=0.628606915911589&_=1523274953883 '
+            url = 'http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=C.BK05011&sty=FCOIATA&sortType=(ChangePercent)&sortRule=1&page='+str(i)+'&pageSize=20&js=var%20dfFHBxOP={rank:[(x)],pages:(pc),total:(tot)}&token=7bc05d0d4c3c22ef9fca8c2a912d779c&jsName=quote_123&_g=0.628606915911589&_=1523274953883'
             # 生成request对象,回调函数传给函数parse_num
             request = Request(url, callback=self.parse_num)
             # request传递给框架的downloader处理,生成response给下一个函数
@@ -36,6 +44,7 @@ class GupiaoSpider(scrapy.Spider):
             if not stock_num.startswith('30'):
                 print("代码:%s 名称:%s 最新涨跌:%s"%(stock_num,stock_name,stock_rise))
         print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        self.logger.info('ok')
 
 
 
@@ -44,5 +53,3 @@ class GupiaoSpider(scrapy.Spider):
 # 此项目最主要的难点是Fiddler抓包取得异步加载的多页股票数据,抓到包后分析请求头得到json数据的url,分析得到page规律
 # 需要获取其他的字段并且入库的另外添加即可,此处只演示至此
 '''
-
-
