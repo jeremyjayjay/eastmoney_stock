@@ -13,7 +13,11 @@
     2.在run.py文件While True循环里设置target_time，可实现程序在该指定时间点爬取信息
 ## 入库说明：
     将项目获取的数据按字段存入mysql数据库中，版本：Mysql 5.7 
-    我在项目数据库里的初始命名：
-    数据库名为：eastmoney
-    表名为：gupiao 
+    
+    我在项目数据库里的初始命名 
+    
+    数据库名为：eastmoney 
+    
+    表名为：gupiao  
+    
     各字段名依次为：stock_num/stock_name/stock_price/stock_change_range/stock_change_price 
