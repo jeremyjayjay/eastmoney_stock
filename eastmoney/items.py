@@ -11,4 +11,9 @@ import scrapy
 class EastmoneyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    stock_num = scrapy.Field()
+    stock_name = scrapy.Field()
+    stock_price = scrapy.Field()
+    stock_change_range = scrapy.Field()
+    stock_change_price = scrapy.Field()
+

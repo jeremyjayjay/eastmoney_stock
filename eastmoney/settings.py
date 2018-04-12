@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'eastmoney.spiders'
 #USER_AGENT = 'eastmoney (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,9 +64,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'eastmoney.pipelines.EastmoneyPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'eastmoney.pipelines.EastmonyMysqlPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +88,12 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+DATABASE = {
+    'host':'localhost',
+    'port':3306,
+    'user':'root',
+    'password':'root',
+    'db':'eastmoney',
+    'charset':'utf8',
+}

@@ -3,6 +3,7 @@ import scrapy
 from scrapy import Request
 import re
 import requests
+from eastmoney.items import EastmoneyItem
 
 
 class GupiaoSpider(scrapy.Spider):
@@ -38,18 +39,31 @@ class GupiaoSpider(scrapy.Spider):
             stock_num = stock_msg_list[1]
             # 股票名称
             stock_name = stock_msg_list[2]
+            # 股票最新价
+            stock_price = stock_msg_list[3]
             # 股票涨跌幅
-            stock_rise = stock_msg_list[5]
+            stock_change_range = stock_msg_list[5].replace('%','')
+            # 股票涨跌额
+            stock_change_price = stock_msg_list[4]
             # 将股票代码'30'开头的创业板股票剔除
             if not stock_num.startswith('30'):
-                print("代码:%s 名称:%s 最新涨跌:%s"%(stock_num,stock_name,stock_rise))
+                print("代码:%s 名称:%s 现价:%s 涨跌幅:%s 涨跌额:%s"%(stock_num,stock_name,stock_price,stock_change_range,stock_change_price))
+                # 生成item对象
+                item = EastmoneyItem()
+                item['stock_num'] = stock_num
+                item['stock_name'] = stock_name
+                item['stock_price'] = stock_price
+                item['stock_change_range'] = stock_change_range
+                item['stock_change_price'] = stock_change_price
+                yield item
+                self.logger.info('ok')
         print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-        self.logger.info('ok')
+
 
 
 
 '''
 总结:
 # 此项目最主要的难点是Fiddler抓包取得异步加载的多页股票数据,抓到包后分析请求头得到json数据的url,分析得到page规律
-# 需要获取其他的字段并且入库的另外添加即可,此处只演示至此
+# 需要获取其他的字段的另外添加即可,此处只演示至此
 '''
