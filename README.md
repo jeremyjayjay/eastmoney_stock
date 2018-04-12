@@ -18,6 +18,6 @@
     
     数据库名为：eastmoney 
     
-    表名为：gupiao  
+    表名为：gupiao  
     
     各字段名依次为：stock_num/stock_name/stock_price/stock_change_range/stock_change_price 
