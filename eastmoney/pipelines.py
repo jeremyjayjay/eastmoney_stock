@@ -8,14 +8,10 @@ import pymysql
 from scrapy.utils.project import get_project_settings
 
 
-class EastmoneyPipeline(object):
-    def process_item(self, item, spider):
-        return item
-
 class EastmonyMysqlPipeline(object):
 
     def __init__(self):
-        settings =get_project_settings()
+        settings = get_project_settings()
         self.database = settings['DATABASE']
         self.connect()
 
@@ -46,6 +42,6 @@ class EastmonyMysqlPipeline(object):
     def truncate_table(self):
         sq1 = 'TRUNCATE TABLE gupiao'
         self.cursor.execute(sq1)
-        # self.close_spider(self)
+        self.close_spider(self)
 
 

@@ -1,12 +1,15 @@
-from scrapy import cmdline
 import time
+from scrapy import cmdline, item, spider
+from eastmoney.pipelines import EastmonyMysqlPipeline
 
 
 # 立即执行爬虫
 def now_play():
+    # 运行前先清理上一次执行的数据
+    EastmonyMysqlPipeline().truncate_table()
     cmdline.execute("scrapy crawl gupiao".split())
 
-# 指定时间执行爬虫
+# 指定时间点执行爬虫
 def set_time(the_time):
     # 实时监控
     while True:
@@ -21,6 +24,9 @@ def set_time(the_time):
         # 判断当前时间是否已经到了指定时间点
         if now_tamp == times_tamp:
             print('当前时间是:%s'%str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))))
+
+            # 运行前先清理上一次执行的数据
+            EastmonyMysqlPipeline().truncate_table()
             # 执行爬虫程序
             cmdline.execute("scrapy crawl gupiao".split())
             break
