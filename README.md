@@ -3,7 +3,8 @@
 ## 环境要求:
     环境及模块:python3+scrapy框架+Fiddler抓包工具
 ## 项目主要方法:
-    东方财富网打开新股列表(http://quote.eastmoney.com/centerv2/hsgg/xg)后,可以发现下一页加载的方式为异步加载的方式, 
+    东方财富网打开新股列表(http://quote.eastmoney.com/centerv2/hsgg/xg) 
+    后,可以发现下一页加载的方式为异步加载的方式, 
     不能直接根据url获取所有页面的股票信息,所以需要Fiddler进行抓包, 
     抓包取得每页股票信息列表的json数据,根据请求头的url分析其所有页面json对应url 
     的规律,使用scrapy进行爬取
