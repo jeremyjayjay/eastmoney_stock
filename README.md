@@ -11,3 +11,5 @@
     1.run.py文件里启动程序，去掉While True 循环直接运行可以实时运行 
     
     2.在run.py文件While True循环里设置target_time，可实现程序在该指定时间点爬取信息
+## 入库说明：
+    将项目获取的数据按字段存入mysql数据库中，配置：Mysql 5.7
