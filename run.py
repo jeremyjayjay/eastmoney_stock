@@ -1,5 +1,5 @@
 import time
-from scrapy import cmdline, item, spider
+from scrapy import cmdline
 from eastmoney.pipelines import EastmonyMysqlPipeline
 
 
@@ -30,6 +30,7 @@ def set_time(the_time):
             # 执行爬虫程序
             cmdline.execute("scrapy crawl gupiao".split())
             break
+
 
 if __name__ == '__main__':
     # 输入要开始爬取的时间点,精确到秒
