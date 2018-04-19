@@ -11,8 +11,9 @@
 
     5.使用celery消息队列工具，自定义程序自动运行和间隔动态运行，实现数据的动态获取 
 
-    6.使用redis保存celery中borker消息的队列缓存,实现
-    异步
+    6.使用redis保存celery中borker消息的队列缓存,实现异步任务调度和定时开启爬取并快速动态更新数据功能 
+    
+    7.采用Redis做url动态缓存，实现分布式爬取系统
 ## 环境要求:
     环境及模块:python3+scrapy框架+Fiddler抓包工具+celery（要求版本4.1.0）+ redis +mysql
 ## 项目主要方法:
