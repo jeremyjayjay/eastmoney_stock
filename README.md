@@ -50,4 +50,4 @@
     各字段名依次为：stock_num/stock_name/stock_price/stock_change_range/stock_change_price 
     
 ## 项目性能：
-   目前可以单机开多台slave实现最快每5秒刷新一次数据表，效率主要受写入数据库时的速度影响，也与slave的数量成正比
+   在单机开一台slave连同Master一起爬取可以实现最快每5秒刷新一次数据表，效率主要受写入数据库时的速度影响，也与slave的数量成正比
