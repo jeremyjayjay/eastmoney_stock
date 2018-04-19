@@ -35,7 +35,7 @@
     
     2) 爬取时先启动celery的worker监听任务消息列表: 终端输入celery -A tasks -l INFO worker 
     
-    3) 接着启动定时器往队列写入任务: 开启另一个终端celery -A tasks -l INFO beat  即可运行程序 
+    3) 接着启动定时器往队列写入任务: 开启另一个终端celery -A tasks -l INFO beat  即可运行程序，在worker终端查看日志 
     
     注意不能在一个url仍在爬取时突然切断,易引发celery任务写入和mysql存库冲突,若有发生冲突,重启系统并清空一次redis即可重新爬取
 ## 入库说明：
@@ -48,3 +48,6 @@
     表名为：gupiao 
     
     各字段名依次为：stock_num/stock_name/stock_price/stock_change_range/stock_change_price 
+    
+## 项目性能：
+   目前可以单机开多台slave实现最快每5秒刷新一次数据表，效率主要受写入数据库时的速度影响，也与slave的数量成正比
