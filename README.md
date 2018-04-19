@@ -29,10 +29,13 @@
 
     3.在tasks.py里使用celery消息队列工具+redis数据库管理，实现定时/循环/无重复地运行程序 
     
-    Celery启动爬虫步骤：
-    1) 先启动Master版,至少半分钟后再启动slave版,Master需启动两个定时器(见上述)
-    2) 爬取时先启动celery的worker监听任务消息列表: 终端输入celery -A tasks -l INFO worker
-    3) 接着启动定时器往队列写入任务: 开启另一个终端celery -A tasks -l INFO beat  即可运行程序
+    Celery启动爬虫步骤： 
+    1) 先启动Master版,至少半分钟后再启动slave版,Master需启动两个定时器(见上述) 
+    
+    2) 爬取时先启动celery的worker监听任务消息列表: 终端输入celery -A tasks -l INFO worker 
+    
+    3) 接着启动定时器往队列写入任务: 开启另一个终端celery -A tasks -l INFO beat  即可运行程序 
+    
     注意不能在一个url仍在爬取时突然切断,易引发celery任务写入和mysql存库冲突,若有发生冲突,重启系统并清空一次redis即可重新爬取
 ## 入库说明：
     将项目获取的数据按字段存入mysql数据库中，数据库版本：Mysql 5.7，使用模块：pymsql 
