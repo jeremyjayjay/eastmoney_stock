@@ -30,6 +30,7 @@
     3.在tasks.py里使用celery消息队列工具+redis数据库管理，实现定时/循环/无重复地运行程序 
     
     Celery启动爬虫步骤： 
+    
     1) 先启动Master版,至少半分钟后再启动slave版,Master需启动两个定时器(见上述) 
     
     2) 爬取时先启动celery的worker监听任务消息列表: 终端输入celery -A tasks -l INFO worker 
