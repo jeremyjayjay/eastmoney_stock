@@ -44,6 +44,14 @@ class EastmonyMysqlPipeline(object):
     def truncate_table(self):
         sq1 = 'TRUNCATE TABLE gupiao'
         self.cursor.execute(sq1)
-        self.close_spider(self)
+
+    # 查询并返回数据表的总记录数
+    def count_num(self):
+        sql = 'SELECT count(*) from gupiao'
+        self.cursor.execute(sql)
+        num = self.cursor.fetchall()[0][0]
+        return num
+
+
 
 
