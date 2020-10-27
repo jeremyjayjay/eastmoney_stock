@@ -12,7 +12,7 @@ click==6.7
 colorama==0.3.9
 constantly==15.1.0
 Crawl==0.5.5
-cryptography==2.1.4
+cryptography==3.2
 cssselect==1.0.3
 decorator==4.2.1
 Django==1.11.9
