@@ -96,7 +96,7 @@ tornado==5.0
 traitlets==4.3.2
 Tree==0.2.3
 Twisted==17.9.0
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==15.1.0
 virtualenvwrapper-win==1.2.5
 w3lib==1.19.0
