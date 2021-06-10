@@ -15,7 +15,7 @@ Crawl==0.5.5
 cryptography==2.1.4
 cssselect==1.0.3
 decorator==4.2.1
-Django==1.11.9
+Django==2.2.24
 django-markdown==0.8.4
 docopt==0.6.2
 entrypoints==0.2.3
